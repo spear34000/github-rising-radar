@@ -1,0 +1,5 @@
+Metadata-Version: 2.4
+Name: radar-scoring
+Version: 0.1.0
+Summary: Deterministic scoring engine for GitHub Rising Radar
+Requires-Python: >=3.11

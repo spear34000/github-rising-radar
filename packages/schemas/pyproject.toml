@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "radar-schemas"
+version = "0.1.0"
+description = "Shared internal DTOs for GitHub Rising Radar pipeline"
+requires-python = ">=3.11"
+dependencies = ["pydantic>=2.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

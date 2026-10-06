@@ -1,0 +1,30 @@
+# dependencies
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+
+# builds
+out/
+.next/
+dist/
+build/
+*.egg-info/
+*.tsbuildinfo
+
+# caches
+.pytest_cache/
+.eslintcache
+
+# env / local
+.env
+!.env.example
+.rising-radar/
+
+# db / runtime
+*.db
+*.sqlite3
+/tmp/pgdata
+
+# OS
+.DS_Store

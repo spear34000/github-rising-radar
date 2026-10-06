@@ -1,0 +1,20 @@
+[project]
+name = "rising-radar-cli"
+version = "0.1.0"
+description = "GitHub Rising Radar — catch repos as they start rising. Standalone CLI, no DB required."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Rising Radar" }]
+dependencies = []
+
+[project.scripts]
+rising-radar = "rising_radar_cli.cli:main"
+radar-lite = "rising_radar_cli.cli:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

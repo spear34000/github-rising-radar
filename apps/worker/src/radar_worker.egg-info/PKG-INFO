@@ -1,0 +1,35 @@
+Metadata-Version: 2.4
+Name: radar-worker
+Version: 0.1.0
+Summary: GitHub Rising Radar — data collection worker (discovery, snapshots, scoring pipeline)
+License: Apache-2.0
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: httpx>=0.27
+Requires-Dist: sqlalchemy>=2.0
+Requires-Dist: psycopg[binary]>=3.1
+Requires-Dist: pydantic>=2.0
+Requires-Dist: pydantic-settings>=2.0
+Requires-Dist: python-dotenv>=1.0
+Requires-Dist: apscheduler>=3.10
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: radar-scoring>=0.1.0
+Provides-Extra: api
+Requires-Dist: radar-api @ file://../../apps/api ; extra == "api"
+
+# radar-worker
+
+Data-collection worker for GitHub Rising Radar.
+
+Jobs (APScheduler):
+
+- `discover_candidates` (every 30 min) — GitHub Search buckets → `repositories`
+- `collect_snapshots` (every 5 min) — due repos → `repository_snapshots`
+- `calculate_scores` (every 10 min) — snapshots → metrics → `scores` (+ `corpus_stats` refresh)
+- `classify_repositories` (every 15 min) — category/status → `detections`
+- `refresh_rankings` (every 15 min) — `rankings` leaderboard cache
+- `cleanup` (daily) — downsample snapshots older than 90 days
+
+CLI: `radar add|refresh|score|discover|worker|seed-demo|backfill`
+
+See `worker/discovery.yaml` for discovery strategy configuration.

@@ -1,0 +1,77 @@
+# GitHub Rising Radar — candidate discovery strategies.
+#
+# Buckets are evaluated in order. Each bucket renders a GitHub code-search-style
+# query template; the worker splits `created`/`pushed` date ranges whenever a
+# query's total_count approaches the Search API 1000-result cap.
+#
+# Template variables: {start}, {end} (YYYY-MM-DD), {min_stars}, {language}.
+# All dates are UTC.
+
+version: 1
+
+search:
+  per_page: 100
+  max_pages_per_query: 10        # 100 results * 10 pages = 1000-result cap
+  split_threshold: 950          # total_count >= this -> split the date range
+  max_split_depth: 4            # hard stop for recursive splitting
+  sort: stars
+  order: desc
+
+buckets:
+  - name: new_recent
+    enabled: true
+    description: "Recently created repositories with minimum traction"
+    query_template: "created:{start}..{end} stars:>={min_stars}"
+    min_stars: 20
+    lookback_days: 7
+
+  - name: active_pushed
+    enabled: true
+    description: "Recently pushed repositories above a star threshold"
+    query_template: "pushed:{start}..{end} stars:>={min_stars}"
+    min_stars: 50
+    lookback_days: 3
+
+  - name: high_potential
+    enabled: true
+    description: "Young repositories with unusually high star counts"
+    query_template: "created:{start}..{end} stars:>={min_stars}"
+    min_stars: 100
+    lookback_days: 30
+
+  - name: lang_python
+    enabled: true
+    description: "Python repositories gaining traction"
+    query_template: "language:{language} created:{start}..{end} stars:>={min_stars}"
+    language: Python
+    min_stars: 30
+    lookback_days: 14
+
+  - name: lang_typescript
+    enabled: true
+    description: "TypeScript repositories gaining traction"
+    query_template: "language:{language} created:{start}..{end} stars:>={min_stars}"
+    language: TypeScript
+    min_stars: 30
+    lookback_days: 14
+
+  - name: lang_rust
+    enabled: true
+    description: "Rust repositories gaining traction"
+    query_template: "language:{language} created:{start}..{end} stars:>={min_stars}"
+    language: Rust
+    min_stars: 20
+    lookback_days: 14
+
+  - name: lang_go
+    enabled: true
+    description: "Go repositories gaining traction"
+    query_template: "language:{language} created:{start}..{end} stars:>={min_stars}"
+    language: Go
+    min_stars: 20
+    lookback_days: 14
+
+# Skip obviously uninteresting candidates before insert.
+filters:
+  skip_archived: true
+  min_stargazers_fallback: 5   # safety net if a bucket sets min_stars too low

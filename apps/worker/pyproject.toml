@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "radar-worker"
+version = "0.1.0"
+description = "GitHub Rising Radar — data collection worker (discovery, snapshots, scoring pipeline)"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+dependencies = [
+    "httpx>=0.27",
+    "sqlalchemy>=2.0",
+    "psycopg[binary]>=3.1",
+    "pydantic>=2.0",
+    "pydantic-settings>=2.0",
+    "python-dotenv>=1.0",
+    "apscheduler>=3.10",
+    "pyyaml>=6.0",
+    "radar-scoring>=0.1.0",
+]
+
+# Optional: reuse the canonical DB models from apps/api when it is installed.
+# Kept optional because apps/api may not exist yet in a fresh checkout;
+# radar_worker.db falls back to CONTRACT-exact local models (radar_worker.db_models).
+[project.optional-dependencies]
+api = [
+    "radar-api @ file://../../apps/api",
+]
+
+[project.scripts]
+radar = "radar_worker.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+radar_worker = ["data/*.yaml"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.mypy]
+python_version = "3.11"
+strict = false
+ignore_missing_imports = true

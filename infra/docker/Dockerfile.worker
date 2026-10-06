@@ -1,0 +1,26 @@
+# GitHub Rising Radar — worker image.
+# Build context: repository root.
+
+FROM python:3.11-slim
+
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1
+
+WORKDIR /app
+
+COPY packages/schemas /app/packages/schemas
+COPY packages/scoring /app/packages/scoring
+COPY apps/api /app/apps/api
+COPY apps/worker /app/worker
+
+RUN pip install --upgrade pip \
+    && pip install /app/packages/schemas /app/packages/scoring \
+    && pip install -e /app/apps/api \
+    && pip install -e /app/worker
+
+# The default discovery config resolves relative to the installed package
+# (/app/worker/worker/discovery.yaml); override at runtime with a volume mount
+# or the DISCOVERY_YAML env var if needed.
+
+CMD ["radar", "worker"]
