@@ -129,7 +129,7 @@ const FEATURES = [
   {
     icon: TrendingUp,
     title: "Acceleration detection",
-    body: "Second-derivative signal: is growth itself speeding up? That's the earliest mathematical signature of a breakout, hours before it trends.",
+    body: "Not just how fast stars arrive, but whether that rate is increasing. A repo going 10 → 50 → 200 stars/day scores above one flat at 100/day.",
   },
   {
     icon: Gauge,
@@ -143,8 +143,8 @@ const FEATURES = [
   },
   {
     icon: Bell,
-    title: "Before-it-was-cool timestamps",
-    body: "First-detection records are stored permanently. When a repo blows up next month, you can prove the radar saw it first — even if the formula changes.",
+    title: "Detection timestamps",
+    body: "Every first detection is stored permanently. If a repo blows up next month, the record shows exactly when the radar flagged it.",
   },
   {
     icon: GitBranch,
@@ -189,16 +189,16 @@ export default function HomePage() {
             Open source · Apache-2.0 · deterministic scoring
           </div>
           <h1 className="mx-auto max-w-4xl text-4xl font-extrabold tracking-tight sm:text-6xl">
-            Catch repos{" "}
+            Star velocity,{" "}
             <span className="bg-gradient-to-r from-emerald-500 to-teal-400 bg-clip-text text-transparent">
-              the moment
-            </span>{" "}
-            they start rising
+              not star count
+            </span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-zinc-500 dark:text-zinc-400">
-            GitHub Trending shows what&apos;s <em>already</em> hot. Rising Radar watches star
-            velocity, acceleration and activity-backed growth to surface repositories{" "}
-            <em>as the breakout begins</em> — with the detection timestamp to prove it.
+            GitHub Trending ranks by total stars, so the same big repos sit there for weeks.
+            Rising Radar ranks by how fast stars are arriving right now — velocity, acceleration,
+            and whether the growth is backed by real activity. Each detection is timestamped,
+            so you can check whether it actually called the breakout early.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link href="/leaderboard">
@@ -236,8 +236,8 @@ export default function HomePage() {
       {/* --------------------------- LIVE DEMO --------------------------- */}
       <Section
         eyebrow="Live demo"
-        title="This is what early looks like"
-        sub="Real UI, synthetic data — clearly labeled. Connect the backend or run Docker Compose for live GitHub data."
+        title="What a breakout looks like in numbers"
+        sub="Real UI, synthetic demo data — clearly labeled. Connect the backend or run Docker Compose for live GitHub data."
       >
         <div className="grid items-start gap-8 lg:grid-cols-5">
           <div className="lg:col-span-3">
@@ -247,13 +247,13 @@ export default function HomePage() {
             {[
               {
                 icon: Rocket,
-                t: "Breakout ≠ famous",
-                d: "A 120-star CLI gaining 680 stars in 24h scores 92 — higher than a 45k-star UI kit gaining 30.",
+                t: "Small repos can outrank big ones",
+                d: "A 120-star CLI gaining 680 stars in 24h scores 92 — above a 45k-star UI kit gaining 30. Relative growth counts, not just absolute.",
               },
               {
                 icon: ShieldCheck,
-                t: "Hype radar",
-                d: "Stars up 2,900 with zero forks and one contributor? Flagged high hype risk, score discounted.",
+                t: "Manufactured spikes get flagged",
+                d: "2,900 new stars with zero forks and one contributor? That's high hype risk — the score gets discounted, not celebrated.",
               },
               {
                 icon: BarChart3,
@@ -285,8 +285,8 @@ export default function HomePage() {
       <div className="border-y border-zinc-200 bg-zinc-100/50 dark:border-zinc-800 dark:bg-zinc-900/40">
         <Section
           eyebrow="Why Rising Radar"
-          title="Built for the moment before trending"
-          sub="Six ideas that make early detection actually work — and honest about what it can't do."
+          title="What it actually measures"
+          sub="Six signals, one deterministic score. Same snapshots in, same score out — no model, no vibes."
         >
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {FEATURES.map((f) => (
@@ -337,8 +337,8 @@ export default function HomePage() {
       <div id="cli" className="border-y border-zinc-200 bg-zinc-950 py-2 text-zinc-100 dark:border-zinc-800">
         <Section
           eyebrow="CLI"
-          title="No infrastructure? No problem."
-          sub="The standalone CLI needs no database — snapshots live in ~/.rising-radar. Perfect for your own watchlist."
+          title="Works with zero setup"
+          sub="The standalone CLI needs no database — snapshots live in ~/.rising-radar. Track your own watchlist from the terminal."
         >
           <div className="grid gap-8 lg:grid-cols-2">
             <div className="space-y-4">
@@ -380,7 +380,7 @@ rising-radar list              # ranked by velocity`}</Code>
       <Section
         eyebrow="Honest comparison"
         title="Radar vs. Trending"
-        sub="Different jobs. Trending tells you what already won; the radar tells you what's starting."
+        sub="Trending answers 'what's popular'. The radar answers 'what's speeding up'. Different question, different ranking."
       >
         <div className="overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800">
           <table className="w-full text-left text-sm">
@@ -424,11 +424,11 @@ rising-radar list              # ranked by velocity`}</Code>
           <div className="relative">
             <Radar className="mx-auto h-12 w-12 text-emerald-400" />
             <h2 className="mx-auto mt-4 max-w-2xl text-3xl font-extrabold tracking-tight sm:text-4xl">
-              Stop discovering great repos a month late
+              Watch repos gain velocity, not just stars
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-zinc-400">
-              Run the leaderboard, install the CLI, or deploy the whole pipeline — Apache-2.0, yours
-              to keep.
+              Run the leaderboard, install the CLI, or deploy the full pipeline yourself.
+              Apache-2.0 — the scoring formula is in the repo, not a black box.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Link href="/leaderboard">
