@@ -95,7 +95,7 @@ function LiveDemo() {
         </div>
         <p className="font-mono text-xs text-zinc-400">rising-radar — live demo</p>
         <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-bold uppercase text-amber-700 dark:bg-amber-900/40 dark:text-amber-300">
-          Demo data
+          Live snapshot · 2026-10-07
         </span>
       </div>
       <div className="space-y-3 p-5">
@@ -237,7 +237,7 @@ export default function HomePage() {
       <Section
         eyebrow="Live demo"
         title="What a breakout looks like in numbers"
-        sub="Real UI, synthetic demo data — clearly labeled. Connect the backend or run Docker Compose for live GitHub data."
+        sub="Real repositories from GitHub, snapshot taken 2026-10-07. Scores computed from stars/day velocity."
       >
         <div className="grid items-start gap-8 lg:grid-cols-5">
           <div className="lg:col-span-3">
@@ -358,12 +358,12 @@ rising-radar list              # ranked by velocity`}</Code>
             </div>
             <div className="space-y-4">
               <div className="rounded-2xl border border-zinc-800 bg-zinc-900 p-6">
-                <p className="font-mono text-xs text-zinc-500">$ rising-radar check neuralforge/tinygrad-turbo</p>
+                <p className="font-mono text-xs text-zinc-500">$ rising-radar check NandhaKishorM/laya</p>
                 <pre className="mt-3 font-mono text-sm leading-relaxed text-zinc-200">
-{`★ neuralforge/tinygrad-turbo
-  stars: 1,842  forks: 294  language: Python
-  velocity 24h: 28.4 stars/h  (+681/day)
-  breakout: 92.0/100  status: breakout  hype: low`}
+{`★ NandhaKishorM/laya
+  stars: 31,259  forks: 2,847  language: Python
+  velocity: 1,645 stars/day (19 days old)
+  breakout: 97/100  status: breakout`}
                 </pre>
               </div>
               <div className="flex items-center gap-3 text-sm text-zinc-400">
