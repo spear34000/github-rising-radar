@@ -6,20 +6,23 @@ import DetailClient from "./DetailClient";
  */
 export function generateStaticParams() {
   if (process.env.GITHUB_PAGES !== "true") return [];
-  // Demo repos from lib/demo.ts — must match SPECS owner/name.
+  // Real repos from lib/demo.ts — must match SPECS owner/name.
   const specs: Array<[string, string]> = [
-    ["neuralforge", "tinygrad-turbo"],
-    ["quantumlabs", "agent-swarm"],
-    ["bytecraft", "llm-gateway"],
-    ["secops", "honeyscan"],
-    ["datadive", "vectorlite"],
-    ["webworks", "htmx-plus"],
-    ["mobkit", "flutter-nova"],
-    ["gamedev", "rogue-engine"],
-    ["infraops", "k8s-cost"],
-    ["researcher", "paper-qa"],
-    ["devtools", "git-bisect-ui"],
-    ["hardlab", "riscv-sim"],
+    ["NandhaKishorM", "laya"],
+    ["storytold", "photocraft"],
+    ["Niko1221", "Strata"],
+    ["browser-use", "jev-ultrafast"],
+    ["KKKKhazix", "AIHOT"],
+    ["jev-chat", "jev-chat-jarvis"],
+    ["robbietilton", "Compositor"],
+    ["cdyforever", "how-to-live-better"],
+    ["zai-org", "ZCode"],
+    ["shihabal3amri", "DiPlay"],
+    ["jaredpalmer", "kev"],
+    ["yetone", "magpie"],
+    ["mizorewww", "laya-mlx"],
+    ["tamaratran", "fast-jev-compaction"],
+    ["Mak5er", "AirCard"],
   ];
   return specs.map(([owner, name]) => ({ owner, name }));
 }
