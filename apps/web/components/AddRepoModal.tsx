@@ -92,9 +92,9 @@ export function AddRepoModal({ open, onClose }: { open: boolean; onClose: () => 
 export function DemoBanner() {
   if (!isDemoMode()) return null;
   return (
-    <div className="sticky top-0 z-50 flex items-center justify-center gap-2 bg-amber-400 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-zinc-950">
+    <div className="sticky top-0 z-50 flex items-center justify-center gap-2 bg-emerald-500 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-zinc-950">
       <FlaskConical className="h-3.5 w-3.5" />
-      Demo data — synthetic mock dataset, not real GitHub data
+      Real GitHub data · snapshot 2026-10-07
     </div>
   );
 }
@@ -102,8 +102,7 @@ export function DemoBanner() {
 export function DemoNotice() {
   return (
     <p className="text-xs text-zinc-400">
-      Browsing the <Link href="/?demo=1" className="underline">synthetic demo dataset</Link>. No real
-      repository data is shown.
+      Showing real GitHub repositories (snapshot 2026-10-07). Scores from stars/day velocity.
     </p>
   );
 }
